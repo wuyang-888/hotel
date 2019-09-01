@@ -1,14 +1,14 @@
 package cn.itcast.service.admin;
 
-import cn.itcast.entity.admin.Authority;
+import cn.itcast.pojo.admin.Authority;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * 权限service接口
+ * 权限业务层接口
  *
- * @author llq
+ *
  */
 @Service
 public interface AuthorityService {

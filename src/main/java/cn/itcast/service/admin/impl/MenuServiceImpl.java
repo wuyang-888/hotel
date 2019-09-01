@@ -4,7 +4,7 @@ package cn.itcast.service.admin.impl;
  */
 
 import cn.itcast.dao.admin.MenuDao;
-import cn.itcast.entity.admin.Menu;
+import cn.itcast.pojo.admin.Menu;
 import cn.itcast.service.admin.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

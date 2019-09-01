@@ -4,7 +4,7 @@ package cn.itcast.service.admin.impl;
  */
 
 import cn.itcast.dao.admin.RoleDao;
-import cn.itcast.entity.admin.Role;
+import cn.itcast.pojo.admin.Role;
 import cn.itcast.service.admin.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

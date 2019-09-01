@@ -1,9 +1,9 @@
 package cn.itcast.controller.admin;
 
-import cn.itcast.entity.admin.Authority;
-import cn.itcast.entity.admin.Menu;
-import cn.itcast.entity.admin.Role;
-import cn.itcast.page.admin.Page;
+import cn.itcast.pojo.admin.Authority;
+import cn.itcast.pojo.admin.Menu;
+import cn.itcast.pojo.admin.Role;
+import cn.itcast.pojo.admin.Page;
 import cn.itcast.service.admin.AuthorityService;
 import cn.itcast.service.admin.MenuService;
 import cn.itcast.service.admin.RoleService;
@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * 角色role控制器
- * @author llq
+ *
  *
  */
 @RequestMapping("/admin/role")

@@ -84,7 +84,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 扫描 po 包，使用别名 -->
-		<property name="typeAliasesPackage" value="cn.itcast.entity"></property>
+		<property name="typeAliasesPackage" value="cn.itcast.pojo"></property>
 		<!-- 扫描映射文件 -->
 		<property name="mapperLocations" value="classpath:config/mybatis/mapper/admin/*.xml"></property>
 	</bean>

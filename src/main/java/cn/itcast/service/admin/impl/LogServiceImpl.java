@@ -1,7 +1,7 @@
 package cn.itcast.service.admin.impl;
 
 import cn.itcast.dao.admin.LogDao;
-import cn.itcast.entity.admin.Log;
+import cn.itcast.pojo.admin.Log;
 import cn.itcast.service.admin.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

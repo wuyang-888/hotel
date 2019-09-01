@@ -1,7 +1,7 @@
 package cn.itcast.service.admin.impl;
 
 import cn.itcast.dao.admin.AuthorityDao;
-import cn.itcast.entity.admin.Authority;
+import cn.itcast.pojo.admin.Authority;
 import cn.itcast.service.admin.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

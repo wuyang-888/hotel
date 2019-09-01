@@ -1,13 +1,13 @@
 package cn.itcast.dao.admin;
 
-import cn.itcast.entity.admin.Authority;
+import cn.itcast.pojo.admin.Authority;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 权限实现类dao
- * @author llq
+ * 权限持久层接口
+ *
  *
  */
 @Repository

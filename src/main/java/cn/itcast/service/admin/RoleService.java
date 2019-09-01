@@ -1,15 +1,15 @@
 package cn.itcast.service.admin;
 
-import cn.itcast.entity.admin.Role;
+import cn.itcast.pojo.admin.Role;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 角色role service
+ * 角色业务层接口
  *
- * @author llq
+ *
  */
 @Service
 public interface RoleService {

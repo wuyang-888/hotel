@@ -1,9 +1,9 @@
 package cn.itcast.controller.admin;
 
-import cn.itcast.entity.admin.Authority;
-import cn.itcast.entity.admin.Menu;
-import cn.itcast.entity.admin.Role;
-import cn.itcast.entity.admin.User;
+import cn.itcast.pojo.admin.Authority;
+import cn.itcast.pojo.admin.Menu;
+import cn.itcast.pojo.admin.Role;
+import cn.itcast.pojo.admin.User;
 import cn.itcast.service.admin.*;
 import cn.itcast.util.CpachaUtil;
 import cn.itcast.util.MenuUtil;
@@ -29,7 +29,7 @@ import java.util.Map;
 
 /**
  * 系统操作类控制器
- * @author llq
+ *
  *
  */
 @Controller

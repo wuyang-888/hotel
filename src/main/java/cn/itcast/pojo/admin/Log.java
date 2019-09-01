@@ -1,13 +1,13 @@
-package cn.itcast.entity.admin;
+package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
- * 系统日志
+ * 系统日志实体类
  *
- * @author llq
+ *
  */
 @Component
 public class Log {

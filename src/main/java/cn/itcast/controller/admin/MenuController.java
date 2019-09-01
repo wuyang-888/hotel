@@ -1,7 +1,7 @@
 package cn.itcast.controller.admin;
 
-import cn.itcast.entity.admin.Menu;
-import cn.itcast.page.admin.Page;
+import cn.itcast.pojo.admin.Menu;
+import cn.itcast.pojo.admin.Page;
 import cn.itcast.service.admin.MenuService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * 菜单管理控制器
  *
- * @author llq
+ *
  */
 @RequestMapping("/admin/menu")
 @Controller

@@ -1,7 +1,7 @@
 package cn.itcast.controller.admin;
 
-import cn.itcast.entity.admin.Log;
-import cn.itcast.page.admin.Page;
+import cn.itcast.pojo.admin.Log;
+import cn.itcast.pojo.admin.Page;
 import cn.itcast.service.admin.LogService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * 日志管理控制器
  *
- * @author llq
+ *
  */
 @RequestMapping("/admin/log")
 @Controller

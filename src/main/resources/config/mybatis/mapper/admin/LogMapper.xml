@@ -4,11 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.itcast.dao.admin.LogDao">
 	<!-- 日志插入操作 -->
-	<insert id="add" parameterType="cn.itcast.entity.admin.Log">
+	<insert id="add" parameterType="cn.itcast.pojo.admin.Log">
 		insert into log(id,content,createTime) values(null,#{content},#{createTime})
 	</insert>
 	<!-- 日志信息搜索查询 -->
-	<select id="findList" parameterType="Map" resultType="cn.itcast.entity.admin.Log">
+	<select id="findList" parameterType="Map" resultType="cn.itcast.pojo.admin.Log">
 		select * from log 
 		<if test="content != null">
 			where content like '%${content}%' 

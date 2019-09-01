@@ -1,15 +1,15 @@
 package cn.itcast.dao.admin;
 
-import cn.itcast.entity.admin.Role;
+import cn.itcast.pojo.admin.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 角色role dao
+ * 角色持久层接口
  *
- * @author llq
+ *
  */
 @Repository
 public interface RoleDao {

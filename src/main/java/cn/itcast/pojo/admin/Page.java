@@ -1,11 +1,11 @@
-package cn.itcast.page.admin;
+package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
 /**
  * 分页基本信息
  *
- * @author llq
+ *
  */
 @Component
 public class Page {

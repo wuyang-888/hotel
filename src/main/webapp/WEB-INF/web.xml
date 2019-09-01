@@ -5,6 +5,16 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
          http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
 
+
+    <!-- 日志配置 -->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:config/log4j.properties</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
     <!-- 中文乱码过滤器 -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -46,14 +56,7 @@
     </listener>
 
 
-    <!-- 日志配置 -->
-    <context-param>
-        <param-name>log4jConfigLocation</param-name>
-        <param-value>classpath:config/log4j.properties</param-value>
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-    </listener>
+
 
     <!-- 配置前端控制器 -->
     <servlet>

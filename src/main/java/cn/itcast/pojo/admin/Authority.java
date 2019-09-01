@@ -1,11 +1,11 @@
-package cn.itcast.entity.admin;
+package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
 /**
- * 权限实体
+ * 权限实体类
  *
- * @author llq
+ *
  */
 @Component
 public class Authority {

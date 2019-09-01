@@ -1,15 +1,15 @@
 package cn.itcast.service.admin;
 
-import cn.itcast.entity.admin.Menu;
+import cn.itcast.pojo.admin.Menu;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 菜单管理service
+ * 菜单管理业务层接口
  *
- * @author llq
+ *
  */
 @Service
 public interface MenuService {

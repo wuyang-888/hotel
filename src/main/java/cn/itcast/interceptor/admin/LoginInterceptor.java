@@ -1,6 +1,6 @@
 package cn.itcast.interceptor.admin;
 
-import cn.itcast.entity.admin.Menu;
+import cn.itcast.pojo.admin.Menu;
 import cn.itcast.util.MenuUtil;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 后台登录拦截器
  *
- * @author llq
+ *
  */
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -33,7 +33,15 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     }
 
-    @Override
+
+    /**
+     * 处理前拦截
+     * @param request
+     * @param response
+     * @param arg2
+     * @return
+     * @throws Exception
+     */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object arg2) throws Exception {
         String requestURI = request.getRequestURI();

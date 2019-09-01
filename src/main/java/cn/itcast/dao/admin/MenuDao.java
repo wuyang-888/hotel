@@ -1,15 +1,15 @@
 package cn.itcast.dao.admin;
 
-import cn.itcast.entity.admin.Menu;
+import cn.itcast.pojo.admin.Menu;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 菜单管理dao
+ * 菜单管理持久层接口
  *
- * @author llq
+ *
  */
 @Repository
 public interface MenuDao {

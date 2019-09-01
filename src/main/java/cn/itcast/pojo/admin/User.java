@@ -1,11 +1,11 @@
-package cn.itcast.entity.admin;
+package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
 /**
  * 用户实体类
  *
- * @author llq
+ *
  */
 @Component
 public class User {

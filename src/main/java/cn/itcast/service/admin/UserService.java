@@ -1,15 +1,15 @@
 package cn.itcast.service.admin;
 
-import cn.itcast.entity.admin.User;
+import cn.itcast.pojo.admin.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * user用户service
+ * 用户业务层接口
  *
- * @author llq
+ *
  */
 @Service
 public interface UserService {

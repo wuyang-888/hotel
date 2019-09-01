@@ -1,15 +1,15 @@
 package cn.itcast.dao.admin;
 
-import cn.itcast.entity.admin.User;
+import cn.itcast.pojo.admin.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * user用户dao
+ *用户持久层接口
  *
- * @author llq
+ *
  */
 @Repository
 public interface UserDao {

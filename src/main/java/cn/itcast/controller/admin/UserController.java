@@ -1,7 +1,7 @@
 package cn.itcast.controller.admin;
 
-import cn.itcast.entity.admin.User;
-import cn.itcast.page.admin.Page;
+import cn.itcast.pojo.admin.User;
+import cn.itcast.pojo.admin.Page;
 import cn.itcast.service.admin.RoleService;
 import cn.itcast.service.admin.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * 用户管理控制器
- * @author llq
+ *
  *
  */
 @RequestMapping("/admin/user")
