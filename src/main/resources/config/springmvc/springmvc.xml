@@ -51,9 +51,10 @@
         </property>
 	</bean>
 	
-	<!-- 后台访问拦截器 -->
+
 	<!---->
 	 <mvc:interceptors>
+		 <!-- 后台访问拦截器 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
 			<mvc:mapping path="/system/*"/>
@@ -62,5 +63,16 @@
 			<mvc:exclude-mapping path="/resources/**"/>
 			<bean class="cn.itcast.interceptor.admin.LoginInterceptor"></bean>
 		</mvc:interceptor>
+
+		 <!-- 前台访问拦截器 -->
+		 <mvc:interceptor>
+			 <mvc:mapping path="/home/account/**"/>
+			 <mvc:mapping path="/home/**"/>
+			 <mvc:exclude-mapping path="/home/login"/>
+			 <mvc:exclude-mapping path="/home/reg"/>
+			 <mvc:exclude-mapping path="/home/get_cpacha"/>
+			 <mvc:exclude-mapping path="/resources/**"/>
+			 <bean class="cn.itcast.interceptor.home.LoginInterceptor"></bean>
+		 </mvc:interceptor>
 	</mvc:interceptors>
 </beans>
