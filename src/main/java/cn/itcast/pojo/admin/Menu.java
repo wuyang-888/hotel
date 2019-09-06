@@ -2,13 +2,15 @@ package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * 菜单实体类
  *
  *
  */
 @Component
-public class Menu {
+public class Menu implements Serializable {
     private Long id;
     private Long parentId;//父类id
     private Long _parentId;//父类id,用来匹配easyui的父类id

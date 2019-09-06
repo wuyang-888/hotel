@@ -2,6 +2,7 @@ package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  *
  */
 @Component
-public class Log {
+public class Log implements Serializable {
     private Long id;
 
     private String content;//日志内容

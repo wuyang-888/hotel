@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.admin.RoomDao">
+    <!--分页模糊查询房间信息-->
+    <select parameterType="Map" id="findList" resultType="room">
+        select * from room where 1 = 1
+        <if test="roomTypeId != null">and roomTypeId = #{roomTypeId}</if>
+        <if test="floorId != null">and floorId = #{floorId}</if>
+        <if test="sn != null">and sn like '%${sn}%'</if>
+        <if test="status != null">and status = #{status}</if>
+        <if test="offset != null and pageSize != null">limit #{offset},#{pageSize}</if>
+    </select>
+
+    <!--查询当前分页的总记录数-->
+    <select parameterType="Map" id="getTotal" resultType="Integer">
+        select count(*) from room where 1=1
+        <if test="roomTypeId != null">and roomTypeId = #{roomTypeId}</if>
+        <if test="floorId != null">and floorId = #{floorId}</if>
+        <if test="sn != null">and sn like '%${sn}%'</if>
+        <if test="status != null">and status = #{status}</if>
+    </select>
+
+    <!--根据房间id查询房间信息-->
+    <select id="findById" parameterType="Long" resultType="room">
+        select * from room where id=#{id}
+    </select>
+
+    <!--根据房间编号查询-->
+    <select id="findBySn" parameterType="String" resultType="room">
+        select * from room where sn=#{sn}
+    </select>
+
+    <!--查询所有房间信息-->
+    <select id="findAll" resultType="room">
+        select * from room
+    </select>
+
+    <!--增加房间信息-->
+    <insert id="add" parameterType="room" >
+        insert into room(photo,sn,roomTypeId,floorId,status,remark)
+            values(#{photo},#{sn},#{roomTypeId},#{floorId},#{status},#{remark})
+    </insert>
+
+    <!--修改房间信息-->
+    <update id="update" parameterType="room">
+        update room set photo = #{photo}, sn = #{sn},roomTypeId = #{roomTypeId},floorId = #{floorId},status = #{status},remark = #{remark} where id = #{id}
+    </update>
+
+    <!--删除房间信息-->
+    <delete id="delete" parameterType="Long">
+        delete from room where id=#{id}
+    </delete>
+</mapper>

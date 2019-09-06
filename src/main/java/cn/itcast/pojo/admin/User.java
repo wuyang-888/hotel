@@ -2,13 +2,15 @@ package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * 用户实体类
  *
  *
  */
 @Component
-public class User {
+public class User implements Serializable {
     private Long id;//用户id，设置自增
     private String username;//用户名，登录名
     private String password;//登录密码

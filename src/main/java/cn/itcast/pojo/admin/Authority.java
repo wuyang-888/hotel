@@ -2,13 +2,15 @@ package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * 权限实体类
  *
  *
  */
 @Component
-public class Authority {
+public class Authority implements Serializable {
     private Long id;
 
     private Long roleId;//角色id

@@ -2,13 +2,15 @@ package cn.itcast.pojo.admin;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * 分页基本信息
  *
  *
  */
 @Component
-public class Page {
+public class Page implements Serializable {
     private int page = 1;//当前页码
 
     private int rows;//每页显示数量

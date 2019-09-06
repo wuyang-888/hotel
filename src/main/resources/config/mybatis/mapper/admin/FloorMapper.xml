@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.admin.FloorDao">
+
+    <!--分页查询楼层信息-->
+    <select id="findList" parameterType="Map" resultType="Floor">
+        select * from floor
+        <if test="name!=null" > where name like '%${name}%' </if>
+        <if test="offset != null and pageSize != null"> limit #{offset},#{pageSize}</if>
+    </select>
+
+    <!--模糊查询总条数-->
+    <select id="getTotal" resultType="Integer" parameterType="Map">
+        select count(*)from floor
+        <if test="name!=null"> where name like '%${name}%' </if>
+    </select>
+
+    <!--查询所有房间类型-->
+    <select id="findAll" resultType="floor">
+        select * from floor
+    </select>
+
+    <!--根据楼层名字查询该楼层-->
+    <select id="findByName" parameterType="String" resultType="floor">
+        select * from floor where name=#{name}
+    </select>
+
+    <!--增加楼层信息-->
+    <insert id="add" parameterType="floor">
+        insert into floor(name,remark)values (#{name},#{remark})
+    </insert>
+
+    <!--修改楼层信息-->
+    <update id="update" parameterType="floor">
+        update floor set name=#{name},remark=#{remark} where id=#{id}
+    </update>
+
+    <!--删除楼层信息-->
+    <delete id="delete" parameterType="Long">
+        delete from floor where id=#{id}
+    </delete>
+</mapper>

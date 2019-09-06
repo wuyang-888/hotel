@@ -1,23 +1,16 @@
 package cn.itcast.pojo.admin;
 
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 
 /**
- * 角色role实体类
- *
- *
+ * 楼层的实体类
  */
-@Component
-public class Role implements Serializable {
-
-    private Long id;
-
-    private String name;
-
-    private String remark;//角色备注
-
+public class Floor implements Serializable {
+    /*********************私有属性******************************/
+    private Long id; //id
+    private String name; //名称
+    private String remark; //备注
+    /***************************set/get*******************************/
     public Long getId() {
         return id;
     }
@@ -41,5 +34,4 @@ public class Role implements Serializable {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.admin.BookOrderDao">
+    <!--分页模糊查询预定信息-->
+    <select parameterType="Map" id="findList" resultType="bookOrder">
+        select * from book_order where 1 = 1
+        <if test="name != null">and name like '%${name}%'</if>
+        <if test="status != null">and status = #{status}</if>
+        <if test="accountId != null">and accountId = #{accountId}</if>
+        <if test="roomTypeId != null">and roomTypeId = #{roomTypeId}</if>
+        <if test="idCard != null">and idCard like '%${idCard}%'</if>
+        <if test="mobile != null">and mobile like '%${mobile}%'</if>
+        <if test="offset != null and pageSize != null">limit #{offset},#{pageSize}</if>
+    </select>
+
+    <!--查询当前分下总记录数-->
+    <select parameterType="Map" id="getTotal" resultType="Integer">
+        select count(*) from book_order where 1=1
+        <if test="name != null">and name like '%${name}%'</if>
+        <if test="status != null">and status = #{status}</if>
+        <if test="accountId != null">and accountId = #{accountId}</if>
+        <if test="roomTypeId != null">and roomTypeId = #{roomTypeId}</if>
+        <if test="idCard != null">and idCard like '%${idCard}%'</if>
+        <if test="mobile != null">and mobile like '%${mobile}%'</if>
+    </select>
+
+    <!--根据id查询预定信息-->
+    <select id="findById" resultType="BookOrder" parameterType="Long">
+        select * from book_order where id=#{id}
+    </select>
+
+    <!--保存用户信息-->
+    <insert id="add" parameterType="bookOrder" >
+        	insert into book_order(accountId,roomTypeId,name,idCard,mobile,status,arriveDate,leaveDate,createTime,remark) values(#{accountId},#{roomTypeId},#{name},#{idCard},#{mobile},#{status},#{arriveDate},#{leaveDate},#{createTime},#{remark})
+    </insert>
+
+    <!--修改预定信息-->
+    <update id="update" parameterType="bookOrder">
+        update book_order set accountId = #{accountId},roomTypeId = #{roomTypeId},name = #{name},arriveDate = #{arriveDate},leaveDate = #{leaveDate},idCard = #{idCard},mobile = #{mobile},status = #{status},remark = #{remark} where id = #{id}
+    </update>
+
+    <!--删除预定信息-->
+    <delete id="delete" parameterType="Long">
+        delete from book_order where id=#{id}
+    </delete>
+</mapper>
