@@ -3,6 +3,7 @@ package cn.itcast.controller.home;
 import cn.itcast.pojo.Account;
 import cn.itcast.service.AccountService;
 import cn.itcast.service.RoomTypeService;
+import cn.itcast.util.Md5Class;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,12 +38,12 @@ public class HomeController {
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView model,
 							 @RequestParam(name = "name", defaultValue = "") String name
-	) {
+	) throws Exception {
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("name", name);
 		queryMap.put("offset", 0);
 		queryMap.put("pageSize", 999);
-		model.addObject("roomTypeList", roomTypeService.findList(queryMap));
+		model.addObject("roomTypeList", roomTypeService.findLsit(queryMap));
 		model.setViewName("home/index/index");
 		model.addObject("kw", name);
 		return model;
@@ -79,7 +80,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> loginAct(Account account, String vcode, HttpServletRequest request) {
+	public Map<String, String> loginAct(Account account, String vcode, HttpServletRequest request) throws Exception {
 		Map<String, String> retMap = new HashMap<String, String>();
 		if (account == null) {
 			retMap.put("type", "error");
@@ -118,7 +119,7 @@ public class HomeController {
 			retMap.put("msg", "用户名不存在！");
 			return retMap;
 		}
-		if (!account.getPassword().equals(findByName.getPassword())) {
+		if (!Md5Class.stringToMd5(account.getPassword()).equals(findByName.getPassword())) {
 			retMap.put("type", "error");
 			retMap.put("msg", "密码错误！");
 			return retMap;
@@ -142,7 +143,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> regAct(Account account) {
+	public Map<String, String> regAct(Account account) throws Exception {
 		Map<String, String> retMap = new HashMap<String, String>();
 		if (account == null) {
 			retMap.put("type", "error");
@@ -169,6 +170,7 @@ public class HomeController {
 			retMap.put("msg", "该用户名已经存在！");
 			return retMap;
 		}
+		account.setPassword(Md5Class.stringToMd5(account.getPassword()));
 		if (accountService.add(account) <= 0) {
 			retMap.put("type", "error");
 			retMap.put("msg", "注册失败，请联系管理员！");
@@ -190,7 +192,7 @@ public class HomeController {
 		return "redirect:login";
 	}
 
-	private boolean isExist(String name) {
+	private boolean isExist(String name) throws Exception {
 		Account account = accountService.findByName(name);
 		if (account == null) return false;
 		return true;

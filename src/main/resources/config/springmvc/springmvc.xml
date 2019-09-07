@@ -27,8 +27,8 @@
 	<!-- 启动定时任务 -->
 	<task:annotation-driven/>
 	
-	<!-- 静态资源处理
-	<mvc:default-servlet-handler/>-->
+	<!-- 静态资源处理-->
+	<mvc:default-servlet-handler/>
 	<!-- 设置静态资源不过滤 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	

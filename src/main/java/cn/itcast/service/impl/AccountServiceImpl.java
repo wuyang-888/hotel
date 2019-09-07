@@ -12,47 +12,89 @@ import java.util.Map;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
-    private AccountDao accountDao;
 
-    @Override
-    public int add(Account account) {
-        return accountDao.add(account);
-    }
+        /***************************************************/
+        @Autowired
+        private AccountDao accountDao;
+        /*********************************************************/
 
-    @Override
-    public int edit(Account account) {
-        return accountDao.edit(account);
-    }
+        /**
+         * 模糊查询
+         * @param queryMap
+         * @return
+         * @throws Exception
+         */
+        public List<Account> findList(Map<String, Object> queryMap) throws Exception {
+            return accountDao.findList(queryMap);
 
-    @Override
-    public int delete(Long id) {
-        return accountDao.delete(id);
-    }
+        }
 
-    @Override
-    public List<Account> findList(Map<String, Object> queryMap) {
-        return accountDao.findList(queryMap);
-    }
+        /**
+         * 获取当前分页的总记录数
+         * @param queryMap
+         * @return
+         * @throws Exception
+         */
+        public Integer getTotal(Map<String, Object> queryMap) throws Exception {
+            return accountDao.getTotal(queryMap);
+        }
 
-    @Override
-    public Integer getTotal(Map<String, Object> queryMap) {
-        return accountDao.getTotal(queryMap);
-    }
+        /**
+         * 查询所有客户信息
+         * @return
+         * @throws Exception
+         */
+        public List<Account> findAll() throws Exception {
+            return accountDao.findAll();
+        }
 
-    @Override
-    public Account find(Long id) {
-        return accountDao.find(id);
-    }
+        /**
+         * 根据客户id查询客户信息
+         * @param id
+         * @return
+         * @throws Exception
+         */
+        public Account findById(Long id) throws Exception {
+            return accountDao.findById(id);
+        }
 
-    @Override
-    public Account findByName(String name) {
-        return accountDao.findByName(name);
-    }
+        /**
+         * 根据客户姓名查询客户信息
+         * @param name
+         * @return
+         * @throws Exception
+         */
+        public Account findByName(String name) throws Exception {
+            return accountDao.findByName(name);
+        }
 
-    @Override
-    public List<Account> findAll() {
-        return accountDao.findAll();
-    }
+        /**
+         * 添加客户信息
+         * @param account
+         * @return
+         * @throws Exception
+         */
+        public int add(Account account) throws Exception {
+            return accountDao.add(account);
+        }
 
+        /**
+         * 编辑客户信息
+         * @param account
+         * @return
+         * @throws Exception
+         */
+        public int edit(Account account) throws Exception {
+            return accountDao.update(account);
+        }
+
+        /**
+         * 删除客户信息
+         * @param id
+         * @return
+         * @throws Exception
+         */
+        public int delete(Long id) throws Exception {
+            return accountDao.delete(id);
+        }
 }
