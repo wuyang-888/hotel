@@ -34,11 +34,11 @@
 	<!-- begin of header -->
 	<div class="wu-header" data-options="region:'north',border:false,split:true">
     	<div class="wu-header-left">
-        	<h1>后台管理系统</h1>
+        	<h1>酒店后台管理系统</h1>
         </div>
         <div class="wu-header-right">
         	<p><strong class="easyui-tooltip" title="0条未读消息">${role.name}:${admin.username}</strong>，欢迎您！</p>
-            <p><a href="#">网站首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="logout">安全退出</a></p>
+            <p><a href="../home/login">网站首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="logout">安全退出</a></p>
         </div>
     </div>
     <!-- end of header -->

@@ -11,27 +11,47 @@
     <meta name="Description" content="酒店管理系统">
     <link rel="stylesheet" href="../../resources/home/css/index.css"/>
     <!--<link rel="stylesheet" href="css/myOrder.css"/>-->
+
     <style>
         #contain {
             padding: 10px 0;
+            /*position: relative;*/
+            z-index: 9;
+        }
+        body::after{
+            content: "";
+            background: url(${pageContext.request.contextPath}/resources/admin/easyui/images/beijing.jpg) repeat-x;
+            opacity: 0.4;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+            background-size: cover;
         }
 
         .tabs {
-            width: 162px;
+            width: 120px;
             float: left;
             padding: 10px 0;
             text-align: center;
-            background: #EDEDED;
+            /*background: #EDEDED;*/
         }
 
         .tabs li {
             line-height: 36px;
+            border-bottom: .1px solid gray;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .content {
-            padding: 0 10px;
+            margin: 0 10px;
             float: left;
             width: 1000px;
+            background: rgba(255,255,255,0.5);
+            font-weight: 600;
         }
 
         .content > div {
@@ -199,11 +219,61 @@
             border-radius: 4px;
         }
 
+        /*-----------------------------------------------*/
+        .wu-header{
+            width: 1536px;
+            height: 50px;
+            position: relative;
+            z-index: 0;
+            overflow: hidden;
+            font: 12px/1.2em Microsoft YaHei;
+            border-bottom: 1px #95b8e7 solid;
+            background: url(${pageContext.request.contextPath}/resources/admin/easyui/images/bg_header.jpg) bottom no-repeat;
+        }
+
+        .wu-header-left{
+            position: absolute;
+            z-index: 1;
+            left: 15px;
+            top: 14px;
+            text-align: left;
+            font: 12px/1.2em Microsoft YaHei;
+        }
+        .wu-header-left h1 {
+            font: 20px/20px Verdana;
+            color: #fff;
+        }
+        .wu-header-right{
+            position: absolute;
+            z-index: 1;
+            right: 5px;
+            top: 0;
+            color: #fff;
+            text-align: right;
+        }
+        .wu-header-right p {
+            line-height: 2em;
+        }
+        .wu-header-right a {
+            color: #fff;
+            margin: 0 5px;
+        }
     </style>
 </head>
 <body>
 <!--头部-->
-<div id="c_header"></div>
+<div id="c_header">
+
+    <div class="wu-header" data-options="region:'north',border:false,split:true">
+        <div class="wu-header-left">
+            <h1>用户中心</h1>
+        </div>
+        <div class="wu-header-right">
+            <p><strong class="easyui-tooltip" title="0条未读消息">${account.name}</strong>，欢迎您！</p>
+            <p><a href="../index">首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="/home/logout">安全退出</a></p>
+        </div>
+    </div>
+</div>
 <!--主体-->
 <div id="contain">
     <!--tab选项卡-->

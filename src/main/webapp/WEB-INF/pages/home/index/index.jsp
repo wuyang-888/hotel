@@ -10,6 +10,27 @@
     <link href="../resources/home/css/reservation.css" type="text/css" rel="Stylesheet"/>
     <link href="../resources/home/css/index.css" type="text/css" rel="Stylesheet"/>
     <title>首页</title>
+    <style>
+        #imgs {
+            height: 256px;
+            width: 1200px;
+        }
+        .show{
+            display: inline-block;
+        }
+        .hide{
+            display: none;
+        }
+
+
+        #imgs img {
+            float: left;
+            height: 256px;
+            width: 1200px
+        }
+    </style>
+
+
 </head>
 <body>
 <!--头部-->
@@ -28,7 +49,12 @@
                 <a href="../home/logout">注销登录</a>&nbsp;
             </c:if>
         </p>
-        <img src="../resources/home/images\index_02.jpg" alt="" height="256px" width="1200px">
+        <div id="imgs">
+            <img class="show" src="../resources/home/images/index_02.jpg">
+            <img class="hide" src="../resources/home/images/index_02.jpg">
+            <img class="hide" src="../resources/home/images/index_02.jpg">
+            <img class="hide" src="../resources/home/images/index_02.jpg">
+        </div>
         <!--遮罩-->
         <ul class="shade_mag">
             <li><img src="../resources/home/images\s_02.png" alt=""></li>
@@ -115,5 +141,24 @@
             $("#search-form").submit();
         })
     });
+</script>
+<script>
+    window.onload = function lunbo(){
+        var i = 0;
+        setInterval(function(){
+            var img = document.querySelectorAll("#imgs>img");
+            i++;
+            var num = i%img.length;
+
+            if(num==0){
+                img[0].className = "show";
+                img[3].className = "hide";
+                i=0;
+            }else{
+                img[num-1].className = "hide";
+                img[num].className = "show";
+            }
+        },2000)
+    }
 </script>
 </body>

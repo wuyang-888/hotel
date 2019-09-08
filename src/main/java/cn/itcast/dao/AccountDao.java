@@ -11,19 +11,19 @@ import java.util.Map;
  */
 @Repository
 public interface AccountDao {
-    public int add(Account account);
+    public int add(Account account);//添加客户
 
-    public int edit(Account account);
+    public int edit(Account account);//编辑客户信息
 
-    public int delete(Long id);
+    public int delete(Long id);//删除客户
 
-    public List<Account> findList(Map<String, Object> queryMap);
+    public List<Account> findList(Map<String, Object> queryMap);//分页查询用户
 
-    public Integer getTotal(Map<String, Object> queryMap);
+    public Integer getTotal(Map<String, Object> queryMap);//查询当前分页总记录条数
 
-    public Account find(Long id);
+    public Account findById(Long id);//根据id查询用户
 
-    public Account findByName(String name);
+    public Account findByName(String name);//通过用户名查询
 
-    public List<Account> findAll();
+    public List<Account> findAll();//查询所有用户
 }

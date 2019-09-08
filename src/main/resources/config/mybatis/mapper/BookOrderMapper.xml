@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	<!-- 获取单个预定订单信息 -->
-	<select id="find" parameterType="Long" resultType="cn.itcast.pojo.BookOrder">
+	<select id="findById" parameterType="Long" resultType="cn.itcast.pojo.BookOrder">
 		select * from book_order where id = #{value}
 	</select>
 	<!-- 模糊搜索总条数 -->

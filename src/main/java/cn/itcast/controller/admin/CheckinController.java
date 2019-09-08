@@ -1,10 +1,14 @@
 package cn.itcast.controller.admin;
 
-import cn.itcast.pojo.admin.*;
-import cn.itcast.service.admin.BookOrderService;
+import cn.itcast.pojo.BookOrder;
+import cn.itcast.pojo.RoomType;
+import cn.itcast.pojo.admin.Checkin;
+import cn.itcast.pojo.admin.Page;
+import cn.itcast.pojo.admin.Room;
+import cn.itcast.service.BookOrderService;
+import cn.itcast.service.RoomTypeService;
 import cn.itcast.service.admin.CheckinService;
 import cn.itcast.service.admin.RoomService;
-import cn.itcast.service.admin.RoomTypeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

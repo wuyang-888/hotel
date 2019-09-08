@@ -16,33 +16,33 @@ public class BookOrderServiceImpl implements BookOrderService {
     private BookOrderDao bookOrderDao;
 
     @Override
-    public int add(BookOrder bookOrder) {
+    public int add(BookOrder bookOrder) throws Exception {
         return bookOrderDao.add(bookOrder);
     }
 
     @Override
-    public int edit(BookOrder bookOrder) {
+    public int edit(BookOrder bookOrder) throws Exception {
         return bookOrderDao.edit(bookOrder);
     }
 
     @Override
-    public int delete(Long id) {
+    public int delete(Long id) throws Exception {
         return bookOrderDao.delete(id);
     }
 
     @Override
-    public List<BookOrder> findList(Map<String, Object> queryMap) {
+    public List<BookOrder> findList(Map<String, Object> queryMap) throws Exception {
         return bookOrderDao.findList(queryMap);
     }
 
     @Override
-    public Integer getTotal(Map<String, Object> queryMap) {
+    public Integer getTotal(Map<String, Object> queryMap) throws Exception {
         return bookOrderDao.getTotal(queryMap);
     }
 
     @Override
-    public BookOrder find(Long id) {
-        return bookOrderDao.find(id);
+    public BookOrder findById(Long id) throws Exception {
+        return bookOrderDao.findById(id);
     }
 
 }

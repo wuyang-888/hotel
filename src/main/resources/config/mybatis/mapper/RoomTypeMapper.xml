@@ -33,7 +33,7 @@
 		select * from room_type
 	</select>
     <!-- 获取单个房间类型信息 -->
-    <select id="find" parameterType="Long" resultType="cn.itcast.pojo.RoomType">
+    <select id="findById" parameterType="Long" resultType="cn.itcast.pojo.RoomType">
 		select * from room_type where id = #{value}
 	</select>
     <!-- 模糊搜索总条数 -->

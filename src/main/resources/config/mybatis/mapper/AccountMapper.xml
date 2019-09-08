@@ -42,7 +42,7 @@
 		select * from account
 	</select>
     <!-- 获取单个客户信息 -->
-    <select id="find" parameterType="Long" resultType="cn.itcast.pojo.Account">
+    <select id="findById" parameterType="Long" resultType="cn.itcast.pojo.Account">
 		select * from account where id = #{value}
 	</select>
     <!-- 模糊搜索总条数 -->

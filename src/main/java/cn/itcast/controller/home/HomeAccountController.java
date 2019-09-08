@@ -40,7 +40,7 @@ public class HomeAccountController {
 	 */
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView model,HttpServletRequest request
-	){
+	) throws Exception {
 		Account account = (Account)request.getSession().getAttribute("account");
 		Map<String,Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("accountId", account.getId());
@@ -59,8 +59,8 @@ public class HomeAccountController {
 	 */
 	@RequestMapping(value="/book_order",method=RequestMethod.GET)
 	public ModelAndView bookOrder(ModelAndView model,Long roomTypeId
-	){
-		model.addObject("roomType", roomTypeService.find(roomTypeId));
+	) throws Exception {
+		model.addObject("roomType", roomTypeService.findById(roomTypeId));
 		model.setViewName("home/account/book_order");
 		return model;
 	}
@@ -72,7 +72,7 @@ public class HomeAccountController {
 	 */
 	@RequestMapping(value="/book_order",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,String> bookOrderAct(BookOrder bookOrder,HttpServletRequest request){
+	public Map<String,String> bookOrderAct(BookOrder bookOrder,HttpServletRequest request) throws Exception {
 		Map<String, String> ret = new HashMap<String, String>();
 		if(bookOrder == null){
 			ret.put("type", "error");
@@ -123,7 +123,7 @@ public class HomeAccountController {
 			ret.put("msg", "添加失败，请联系管理员!");
 			return ret;
 		}
-		RoomType roomType = roomTypeService.find(bookOrder.getRoomTypeId());
+		RoomType roomType = roomTypeService.findById(bookOrder.getRoomTypeId());
 		//预定成功后去修改该房型的预定数
 		if(roomType != null){
 			roomType.setBookNum(roomType.getBookNum() + 1);

@@ -2,13 +2,14 @@ package cn.itcast.pojo;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 预定订单实体类
  */
 @Component
-public class BookOrder {
+public class BookOrder implements Serializable {
     private Long id;//预定订单id
     private Long accountId;//客户id
     private Long roomTypeId;//房型id

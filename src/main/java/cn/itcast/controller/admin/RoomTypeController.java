@@ -1,8 +1,8 @@
 package cn.itcast.controller.admin;
 
+import cn.itcast.pojo.RoomType;
 import cn.itcast.pojo.admin.Page;
-import cn.itcast.pojo.admin.RoomType;
-import cn.itcast.service.admin.RoomTypeService;
+import cn.itcast.service.RoomTypeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

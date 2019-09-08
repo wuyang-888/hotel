@@ -2,11 +2,13 @@ package cn.itcast.pojo;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * 房间类型实体类
  */
 @Component
-public class RoomType {
+public class RoomType implements Serializable {
     private Long id;//房间类型id
     private String name;//房间名称
     private String photo;//房间类型图片
