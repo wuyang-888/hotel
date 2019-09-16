@@ -6,6 +6,7 @@ import cn.itcast.pojo.admin.Role;
 import cn.itcast.pojo.admin.User;
 import cn.itcast.service.admin.*;
 import cn.itcast.util.CpachaUtil;
+import cn.itcast.util.Md5Class;
 import cn.itcast.util.MenuUtil;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -135,7 +136,7 @@ public class SystemController {
 			logService.add("登录时，用户名为"+user.getUsername()+"的用户不存在!");
 			return ret;
 		}
-		if(!user.getPassword().equals(findByUsername.getPassword())){
+		if(!Md5Class.stringToMd5(user.getPassword()).equals(findByUsername.getPassword())){
 			ret.put("type", "error");
 			ret.put("msg", "密码错误！");
 			logService.add("用户名为"+user.getUsername()+"的用户登录时输入密码错误!");
@@ -197,13 +198,14 @@ public class SystemController {
 			ret.put("msg", "请填写新密码！");
 			return ret;
 		}
+		oldpassword=Md5Class.stringToMd5(oldpassword);
 		User user = (User)request.getSession().getAttribute("admin");
 		if(!user.getPassword().equals(oldpassword)){
 			ret.put("type", "error");
 			ret.put("msg", "原密码错误！");
 			return ret;
 		}
-		user.setPassword(newpassword);
+		user.setPassword(Md5Class.stringToMd5(newpassword));
 		if(userService.editPassword(user) <= 0){
 			ret.put("type", "error");
 			ret.put("msg", "密码修改失败，请联系管理员！");

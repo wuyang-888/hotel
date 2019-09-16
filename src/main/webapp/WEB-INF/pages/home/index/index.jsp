@@ -94,7 +94,7 @@
                 <tbody>
                 <c:forEach items="${roomTypeList }" var="roomType">
                     <tr>
-                        <td><a href="#"><img src="${roomType.photo }" alt=""></a>
+                        <td><a href="#"><img src="${pageContext.request.contextPath}${roomType.photo }" alt=""></a>
                         </td>
                         <td align="center">
                             <p>${roomType.name }</p>

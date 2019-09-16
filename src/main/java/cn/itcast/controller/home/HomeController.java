@@ -3,6 +3,7 @@ package cn.itcast.controller.home;
 import cn.itcast.pojo.Account;
 import cn.itcast.service.AccountService;
 import cn.itcast.service.RoomTypeService;
+import cn.itcast.util.Md5Class;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,26 +29,25 @@ public class HomeController {
     @Autowired
     private AccountService accountService;
 
-    /**
-     * 前台首页
-     *
-     * @param model
-     * @param name
-     * @return
-     */
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView list(ModelAndView model,
-                             @RequestParam(name = "name", defaultValue = "") String name
-    ) throws Exception {
-        Map<String, Object> queryMap = new HashMap<String, Object>();
-        queryMap.put("name", name);
-        queryMap.put("offset", 0);
-        queryMap.put("pageSize", 999);
-        model.addObject("roomTypeList", roomTypeService.findLsit(queryMap));
-        model.setViewName("home/index/index");
-        model.addObject("kw", name);
-        return model;
-    }
+	/**
+	 * 前台首页
+	 * @param model
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping(value="/index",method=RequestMethod.GET)
+	public ModelAndView list(ModelAndView model,
+							 @RequestParam(name = "name", defaultValue = "") String name
+	) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("name", name);
+		queryMap.put("offset", 0);
+		queryMap.put("pageSize", 999);
+		model.addObject("roomTypeList", roomTypeService.findLsit(queryMap));
+		model.setViewName("home/index/index");
+		model.addObject("kw", name);
+		return model;
+	}
 
     /**
      * 登录页面
@@ -196,9 +196,9 @@ public class HomeController {
         return "redirect:login";
     }
 
-    private boolean isExist(String name) {
-        Account account = accountService.findByName(name);
-        if (account == null) return false;
-        return true;
-    }
+	private boolean isExist(String name) throws Exception {
+		Account account = accountService.findByName(name);
+		if (account == null) return false;
+		return true;
+	}
 }

@@ -18,15 +18,9 @@
     <!-- 房间类型信息搜索查询 -->
     <select id="findList" parameterType="Map" resultType="cn.itcast.pojo.RoomType">
         select * from room_type where 1 = 1
-        <if test="name != null">
-            and name like '%${name}%'
-        </if>
-        <if test="status != null">
-            and status = #{status}
-        </if>
-        <if test="offset != null and pageSize != null">
-            limit #{offset},#{pageSize}
-        </if>
+        <if test="name != null"> and name like '%${name}%' </if>
+        <if test="status != null"> and status = #{status} </if>
+        <if test="offset != null and pageSize != null"> limit #{offset},#{pageSize}</if>
     </select>
     <!-- 获取所有房间类型信息 -->
     <select id="findAll" parameterType="Map" resultType="cn.itcast.pojo.RoomType">

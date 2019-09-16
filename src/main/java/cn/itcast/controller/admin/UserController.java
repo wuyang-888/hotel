@@ -107,6 +107,7 @@ public class UserController {
 			ret.put("msg", "该用户名已经存在，请重新输入！");
 			return ret;
 		}
+
 		if(userService.add(user) <= 0){
 			ret.put("type", "error");
 			ret.put("msg", "用户添加失败，请联系管理员！");

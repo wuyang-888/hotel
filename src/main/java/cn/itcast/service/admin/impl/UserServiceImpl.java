@@ -3,6 +3,7 @@ package cn.itcast.service.admin.impl;
 import cn.itcast.dao.admin.UserDao;
 import cn.itcast.pojo.admin.User;
 import cn.itcast.service.admin.UserService;
+import cn.itcast.util.Md5Class;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int add(User user) {
+        //密码加密
+        user.setPassword(Md5Class.stringToMd5(user.getPassword()));
         return userDao.add(user);
     }
 

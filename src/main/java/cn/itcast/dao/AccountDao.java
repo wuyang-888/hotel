@@ -7,23 +7,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 客户dao
+ * 客户的业务层接口
  */
 @Repository
 public interface AccountDao {
-    public int add(Account account);//添加客户
-
-    public int edit(Account account);//编辑客户信息
-
-    public int delete(Long id);//删除客户
-
-    public List<Account> findList(Map<String, Object> queryMap);//分页查询用户
-
-    public Integer getTotal(Map<String, Object> queryMap);//查询当前分页总记录条数
-
-    public Account findById(Long id);//根据id查询用户
-
-    public Account findByName(String name);//通过用户名查询
-
-    public List<Account> findAll();//查询所有用户
+    //模糊分页查询
+    public List<Account> findList(Map<String, Object> queryMap)throws Exception;
+    //查询当前分页下的总记录数
+    public Integer getTotal(Map<String, Object> queryMap)throws Exception;
+    //查询所有用户
+    public List<Account> findAll()throws Exception;
+    //根据id查询客户信息
+    public Account findById(Long id)throws Exception;
+    //根据客户姓名查询客户信息
+    public Account findByName(String name)throws Exception;
+    //保存用户
+    public int add(Account account)throws Exception;
+    //修改用户数据
+    public int edit(Account account)throws Exception;
+    //删除用户
+    public int delete(Long id)throws Exception;
 }

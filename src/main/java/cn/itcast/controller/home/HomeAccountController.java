@@ -6,6 +6,7 @@ import cn.itcast.pojo.RoomType;
 import cn.itcast.service.AccountService;
 import cn.itcast.service.BookOrderService;
 import cn.itcast.service.RoomTypeService;
+import cn.itcast.util.Md5Class;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -147,7 +148,7 @@ public class HomeAccountController {
 	 */
 	@RequestMapping(value="/update_info",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,String> updateInfoAct(Account account,HttpServletRequest request){
+	public Map<String,String> updateInfoAct(Account account,HttpServletRequest request) throws Exception {
 		Map<String,String> retMap = new HashMap<String, String>();
 		if(account == null){
 			retMap.put("type", "error");
@@ -170,6 +171,7 @@ public class HomeAccountController {
 		loginedAccount.setMobile(account.getMobile());
 		loginedAccount.setName(account.getName());
 		loginedAccount.setRealName(account.getRealName());
+
 		if(accountService.edit(loginedAccount) <= 0){
 			retMap.put("type", "error");
 			retMap.put("msg", "修改失败，请联系管理员！");
@@ -187,7 +189,7 @@ public class HomeAccountController {
 	 */
 	@RequestMapping(value="/update_pwd",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,String> updatePwdAct(String oldPassword,String newPassword,HttpServletRequest request){
+	public Map<String,String> updatePwdAct(String oldPassword,String newPassword,HttpServletRequest request) throws Exception {
 		Map<String,String> retMap = new HashMap<String, String>();
 		if(StringUtils.isEmpty(oldPassword)){
 			retMap.put("type", "error");
@@ -199,13 +201,15 @@ public class HomeAccountController {
 			retMap.put("msg", "请填写新密码！");
 			return retMap;
 		}
+		//将输入的密码加密
+		oldPassword= Md5Class.stringToMd5(oldPassword);
 		Account loginedAccount = (Account)request.getSession().getAttribute("account");
 		if(!oldPassword.equals(loginedAccount.getPassword())){
 			retMap.put("type", "error");
 			retMap.put("msg", "原密码错误！");
 			return retMap;
 		}
-		loginedAccount.setPassword(newPassword);
+		loginedAccount.setPassword(Md5Class.stringToMd5(newPassword));
 		if(accountService.edit(loginedAccount) <= 0){
 			retMap.put("type", "error");
 			retMap.put("msg", "修改失败，请联系管理员！");
@@ -222,7 +226,7 @@ public class HomeAccountController {
 	 * @param id
 	 * @return
 	 */
-	private boolean isExist(String name,Long id){
+	private boolean isExist(String name,Long id) throws Exception {
 		Account account = accountService.findByName(name);
 		if(account == null)return false;
 		if(account != null && account.getId().longValue() == id)return false;
