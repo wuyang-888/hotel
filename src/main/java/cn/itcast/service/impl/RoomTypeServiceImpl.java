@@ -15,8 +15,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Autowired
     private RoomTypeDao roomTypeDao;
 
-
-    /**根据条件模糊查询
+    /**
+     * 根据条件模糊查询
      * 分页查询
      *
      * @param queryMap
@@ -29,6 +29,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 获取当前查询条件下的总记录数
+     *
      * @param queryMap
      * @return
      * @throws Exception
@@ -39,6 +40,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 根据房间类型id查询该房间类型
+     *
      * @param id
      * @return
      * @throws Exception
@@ -49,6 +51,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 查询所有房间类型
+     *
      * @return
      * @throws Exception
      */
@@ -58,6 +61,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 根据房间类型名查询房间类型
+     *
      * @param name
      * @return
      * @throws Exception
@@ -68,6 +72,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 增加房间类型信息
+     *
      * @param roomType
      * @return
      * @throws Exception
@@ -78,6 +83,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 编辑房间类型信息
+     *
      * @param roomType
      * @return
      * @throws Exception
@@ -88,6 +94,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 修改可预定数
+     *
      * @param roomType
      * @return
      * @throws Exception
@@ -98,6 +105,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     /**
      * 删除房间类型信息
+     *
      * @param id
      * @return
      * @throws Exception

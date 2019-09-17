@@ -11,7 +11,7 @@
     <update id="edit" parameterType="cn.itcast.pojo.RoomType">
 		update room_type set name = #{name},photo = #{photo},price = #{price},liveNum = #{liveNum},bedNum = #{bedNum},roomNum = #{roomNum},avilableNum = #{avilableNum},status = #{status},remark = #{remark} where id = #{id}
 	</update>
-    <!-- 房间类型数量编辑操作 -->
+    <!-- 更新房间类型数量 -->
     <update id="updateNum" parameterType="cn.itcast.pojo.RoomType">
 		update room_type set avilableNum = #{avilableNum},bookNum = #{bookNum},livedNum = #{livedNum} where id = #{id}
 	</update>

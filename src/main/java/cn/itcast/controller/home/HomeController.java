@@ -75,114 +75,113 @@ public class HomeController {
         return model;
     }
 
-    /**
-     * 登录信息提交
-     *
-     * @param account
-     * @return
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, String> loginAct(Account account, String vcode, HttpServletRequest request) {
-        Map<String, String> retMap = new HashMap<String, String>();
-        if (account == null) {
-            retMap.put("type", "error");
-            retMap.put("msg", "请填写正确的用户信息！");
-            return retMap;
-        }
-        if (StringUtils.isEmpty(account.getName())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "用户名不能为空！");
-            return retMap;
-        }
-        if (StringUtils.isEmpty(account.getPassword())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "密码不能为空！");
-            return retMap;
-        }
-        if (StringUtils.isEmpty(vcode)) {
-            retMap.put("type", "error");
-            retMap.put("msg", "验证码不能为空！");
-            return retMap;
-        }
-        Object attribute = request.getSession().getAttribute("accountLoginCpacha");
-        if (attribute == null) {
-            retMap.put("type", "error");
-            retMap.put("msg", "验证码过期，请刷新！");
-            return retMap;
-        }
-        if (!vcode.equalsIgnoreCase(attribute.toString())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "验证码错误！");
-            return retMap;
-        }
-        Account findByName = accountService.findByName(account.getName());
-        if (findByName == null) {
-            retMap.put("type", "error");
-            retMap.put("msg", "用户名不存在！");
-            return retMap;
-        }
-        if (!account.getPassword().equals(findByName.getPassword())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "密码错误！");
-            return retMap;
-        }
-        if (findByName.getStatus() == -1) {
-            retMap.put("type", "error");
-            retMap.put("msg", "该用户已被禁用，请联系管理员！");
-            return retMap;
-        }
-        request.getSession().setAttribute("account", findByName);
-        request.getSession().setAttribute("accountLoginCpacha", null);
-        retMap.put("type", "success");
-        retMap.put("msg", "登录成功！");
-        return retMap;
-    }
+	/**
+	 * 登录信息提交
+	 * @param account
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> loginAct(Account account, String vcode, HttpServletRequest request) throws Exception {
+		Map<String, String> retMap = new HashMap<String, String>();
+		if (account == null) {
+			retMap.put("type", "error");
+			retMap.put("msg", "请填写正确的用户信息！");
+			return retMap;
+		}
+		if (StringUtils.isEmpty(account.getName())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "用户名不能为空！");
+			return retMap;
+		}
+		if (StringUtils.isEmpty(account.getPassword())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "密码不能为空！");
+			return retMap;
+		}
+		if (StringUtils.isEmpty(vcode)) {
+			retMap.put("type", "error");
+			retMap.put("msg", "验证码不能为空！");
+			return retMap;
+		}
+		Object attribute = request.getSession().getAttribute("accountLoginCpacha");
+		if (attribute == null) {
+			retMap.put("type", "error");
+			retMap.put("msg", "验证码过期，请刷新！");
+			return retMap;
+		}
+		if (!vcode.equalsIgnoreCase(attribute.toString())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "验证码错误！");
+			return retMap;
+		}
+		Account findByName = accountService.findByName(account.getName());
+		if (findByName == null) {
+			retMap.put("type", "error");
+			retMap.put("msg", "用户名不存在！");
+			return retMap;
+		}
+		if (!Md5Class.stringToMd5(account.getPassword()).equals(findByName.getPassword())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "密码错误！");
+			return retMap;
+		}
+		if (findByName.getStatus() == -1) {
+			retMap.put("type", "error");
+			retMap.put("msg", "该用户已被禁用，请联系管理员！");
+			return retMap;
+		}
+		request.getSession().setAttribute("account", findByName);
+		request.getSession().setAttribute("accountLoginCpacha", null);
+		retMap.put("type", "success");
+		retMap.put("msg", "登录成功！");
+		return retMap;
+	}
 
-    /**
-     * 注册信息提交
-     *
-     * @param account
-     * @return
-     */
-    @RequestMapping(value = "/reg", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, String> regAct(Account account) {
-        Map<String, String> retMap = new HashMap<String, String>();
-        if (account == null) {
-            retMap.put("type", "error");
-            retMap.put("msg", "请填写正确的用户信息！");
-            return retMap;
-        }
-        if (StringUtils.isEmpty(account.getName())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "用户名不能为空！");
-            return retMap;
-        }
-        if (StringUtils.isEmpty(account.getPassword())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "密码不能为空！");
-            return retMap;
-        }
-        if (StringUtils.isEmpty(account.getMobile())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "手机号不能为空！");
-            return retMap;
-        }
-        if (isExist(account.getName())) {
-            retMap.put("type", "error");
-            retMap.put("msg", "该用户名已经存在！");
-            return retMap;
-        }
-        if (accountService.add(account) <= 0) {
-            retMap.put("type", "error");
-            retMap.put("msg", "注册失败，请联系管理员！");
-            return retMap;
-        }
-        retMap.put("type", "success");
-        retMap.put("msg", "注册成功！");
-        return retMap;
-    }
+	/**
+	 * 注册信息提交
+	 * @param account
+	 * @return
+	 */
+	@RequestMapping(value = "/reg", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> regAct(Account account) throws Exception {
+		Map<String, String> retMap = new HashMap<String, String>();
+		if (account == null) {
+			retMap.put("type", "error");
+			retMap.put("msg", "请填写正确的用户信息！");
+			return retMap;
+		}
+		if (StringUtils.isEmpty(account.getName())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "用户名不能为空！");
+			return retMap;
+		}
+		if (StringUtils.isEmpty(account.getPassword())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "密码不能为空！");
+			return retMap;
+		}
+		if (StringUtils.isEmpty(account.getMobile())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "手机号不能为空！");
+			return retMap;
+		}
+		if (isExist(account.getName())) {
+			retMap.put("type", "error");
+			retMap.put("msg", "该用户名已经存在！");
+			return retMap;
+		}
+		account.setPassword(Md5Class.stringToMd5(account.getPassword()));
+		if (accountService.add(account) <= 0) {
+			retMap.put("type", "error");
+			retMap.put("msg", "注册失败，请联系管理员！");
+			return retMap;
+		}
+		retMap.put("type", "success");
+		retMap.put("msg", "注册成功！");
+		return retMap;
+	}
 
     /**
      * 退出登录

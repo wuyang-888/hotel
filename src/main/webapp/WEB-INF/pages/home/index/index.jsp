@@ -51,9 +51,9 @@
         </p>
         <div id="imgs">
             <img class="show" src="../resources/home/images/index_02.jpg">
-            <img class="hide" src="../resources/home/images/index_02.jpg">
-            <img class="hide" src="../resources/home/images/index_02.jpg">
-            <img class="hide" src="../resources/home/images/index_02.jpg">
+            <img class="hide" src="../resources/home/images/p1.png">
+            <img class="hide" src="../resources/home/images/p2.png">
+            <img class="hide" src="../resources/home/images/p3.png">
         </div>
         <!--遮罩-->
         <ul class="shade_mag">

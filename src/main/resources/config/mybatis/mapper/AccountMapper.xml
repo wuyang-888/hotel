@@ -3,16 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.itcast.dao.AccountDao">
-    <!-- 客户插入操作 -->
-    <insert id="add" parameterType="cn.itcast.pojo.Account">
-		insert into account(id,name,password,realName,idCard,mobile,address,status) values(null,#{name},#{password},#{realName},#{idCard},#{mobile},#{address},#{status})
-	</insert>
-    <!-- 客户编辑操作 -->
-    <update id="edit" parameterType="cn.itcast.pojo.Account">
-		update account set name = #{name},password = #{password},realName = #{realName},idCard = #{idCard},mobile = #{mobile},address = #{address},status = #{status} where id = #{id}
-	</update>
-    <!-- 客户信息搜索查询 -->
-    <select id="findList" parameterType="Map" resultType="cn.itcast.pojo.Account">
+    <!--模糊查询客户循序-->
+    <select parameterType="Map" id="findList" resultType="account">
         select * from account where 1 = 1
         <if test="name != null">
             and name like '%${name}%'
@@ -66,6 +58,6 @@
     </select>
     <!-- 删除客户信息 -->
     <delete id="delete" parameterType="Long">
-		delete from account where id = ${value}
-	</delete>
+        delete  from account where id=#{id}
+    </delete>
 </mapper>

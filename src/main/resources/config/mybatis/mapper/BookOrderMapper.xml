@@ -36,11 +36,11 @@
 			limit #{offset},#{pageSize}
 		</if>
 	</select>
-	<!-- 获取单个预定订单信息 -->
+	<!-- 根据id获取单个预定订单信息 -->
 	<select id="findById" parameterType="Long" resultType="cn.itcast.pojo.BookOrder">
 		select * from book_order where id = #{value}
 	</select>
-	<!-- 模糊搜索总条数 -->
+	<!-- 查询当前分下总记录数 -->
 	<select id="getTotal" parameterType="Map" resultType="Integer">
 		select count(*) from book_order where 1=1  
 		<if test="name != null">
