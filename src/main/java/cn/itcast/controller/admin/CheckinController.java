@@ -90,10 +90,10 @@ public class CheckinController {
     /**
      * 添加入住信息
      */
-    @RequestMapping(value="/add",method=RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,String> add(Checkin checkin,
-                                  @RequestParam(name="bookOrderId",required=false) Long bookOrderId)throws Exception{
+    public Map<String, String> add(Checkin checkin,
+                                   @RequestParam(name = "bookOrderId", required = false) Long bookOrderId) throws Exception {
         //创建返回数据存储集合
         Map<String, String> map = new HashMap<String, String>();
         //判断是否有入住信息
@@ -103,7 +103,7 @@ public class CheckinController {
             return map;
         }
         //判断是否选择房间
-        if (checkin.getRoomId()== null) {
+        if (checkin.getRoomId() == null) {
             map.put("type", "error");
             map.put("msg", "房间不能为空");
             return map;
@@ -115,31 +115,31 @@ public class CheckinController {
             return map;
         }
         //判断是否填写联系人姓名
-        if(StringUtils.isEmpty(checkin.getName())){
+        if (StringUtils.isEmpty(checkin.getName())) {
             map.put("type", "error");
             map.put("msg", "入住联系人名称不能为空!");
             return map;
         }
         //判断是否填写联系人手机号
-        if(StringUtils.isEmpty(checkin.getMobile())){
+        if (StringUtils.isEmpty(checkin.getMobile())) {
             map.put("type", "error");
             map.put("msg", "入住联系人手机号不能为空!");
             return map;
         }
         //判断是否填写联系人身份证号
-        if(StringUtils.isEmpty(checkin.getIdCard())){
+        if (StringUtils.isEmpty(checkin.getIdCard())) {
             map.put("type", "error");
             map.put("msg", "入住联系人身份证号不能为空!");
             return map;
         }
         //判断是否填写到达时间
-        if(StringUtils.isEmpty(checkin.getArriveDate())){
+        if (StringUtils.isEmpty(checkin.getArriveDate())) {
             map.put("type", "error");
             map.put("msg", "到达时间不能为空!");
             return map;
         }
         //判断是否填写离店时间
-        if(StringUtils.isEmpty(checkin.getLeaveDate())){
+        if (StringUtils.isEmpty(checkin.getLeaveDate())) {
             map.put("type", "error");
             map.put("msg", "离店时间不能为空!");
             return map;
@@ -148,36 +148,36 @@ public class CheckinController {
         //入住订单创建时间
         checkin.setCreateTime(new Date());
         //判断添加是否成功
-        if(checkinService.add(checkin)<=0){
+        if (checkinService.add(checkin) <= 0) {
             map.put("type", "success");
             map.put("msg", "添加失败，请联系管理员!");
             return map;
         }
         RoomType roomType = roomTypeService.findById(checkin.getRoomTypeId());
         //判断本次添加用户是否是已预定
-        if(bookOrderId!=null){
+        if (bookOrderId != null) {
             //从预定来的订单
             BookOrder bookOrder = bookOrderService.findById(bookOrderId);
             //预定状态改为已入住
             bookOrder.setStatus(1);
             bookOrderService.edit(bookOrder);
 
-        }else{
+        } else {
             //本次用户非已预定
             //可住房间数减一
-            roomType.setAvilableNum(roomType.getAvilableNum()-1);
+            roomType.setAvilableNum(roomType.getAvilableNum() - 1);
         }
         //入住成功后修改房型信息
-        if(roomType != null){
+        if (roomType != null) {
             roomType.setLivedNum(roomType.getLivedNum() + 1);//入住数加1
-            roomType.setBookNum(roomType.getRoomNum()-1);
+            roomType.setBookNum(roomType.getRoomNum() - 1);
             roomTypeService.updateNum(roomType);
             //修改预定数
             if (checkin.getBookOrderId() != null) {
                 roomType.setBookNum(roomType.getBookNum() - 1);
             }
             //如果可用的房间数为0，则设置该房型状态已满
-            if(roomType.getAvilableNum() == 0){
+            if (roomType.getAvilableNum() == 0) {
                 roomType.setStatus(0);
                 roomTypeService.edit(roomType);
             }
@@ -185,7 +185,7 @@ public class CheckinController {
         //获取当前入住的房间
         Room room = roomService.findById(checkin.getRoomId());
         //判断该房间时候存在
-        if(room!=null){
+        if (room != null) {
             //把房间状态改为已入住
             room.setStatus(1);
             roomService.edit(room);
@@ -274,7 +274,7 @@ public class CheckinController {
             return map;
         }
         //判断是否选择房间
-        if (checkin.getRoomId()== null) {
+        if (checkin.getRoomId() == null) {
             map.put("type", "error");
             map.put("msg", "房间不能为空");
             return map;
@@ -286,44 +286,44 @@ public class CheckinController {
             return map;
         }
         //判断是否填写联系人姓名
-        if(StringUtils.isEmpty(checkin.getName())){
+        if (StringUtils.isEmpty(checkin.getName())) {
             map.put("type", "error");
             map.put("msg", "入住联系人名称不能为空!");
             return map;
         }
         //判断是否填写联系人手机号
-        if(StringUtils.isEmpty(checkin.getMobile())){
+        if (StringUtils.isEmpty(checkin.getMobile())) {
             map.put("type", "error");
             map.put("msg", "入住联系人手机号不能为空!");
             return map;
         }
         //判断是否填写联系人身份证号
-        if(StringUtils.isEmpty(checkin.getIdCard())){
+        if (StringUtils.isEmpty(checkin.getIdCard())) {
             map.put("type", "error");
             map.put("msg", "入住联系人身份证号不能为空!");
             return map;
         }
         //判断是否填写到达时间
-        if(StringUtils.isEmpty(checkin.getArriveDate())){
+        if (StringUtils.isEmpty(checkin.getArriveDate())) {
             map.put("type", "error");
             map.put("msg", "到达时间不能为空!");
             return map;
         }
         //判断是否填写离店时间
-        if(StringUtils.isEmpty(checkin.getLeaveDate())){
+        if (StringUtils.isEmpty(checkin.getLeaveDate())) {
             map.put("type", "error");
             map.put("msg", "离店时间不能为空!");
             return map;
         }
         //判断所选数据是否存在
         Checkin existCheckin = checkinService.findById(checkin.getId());
-        if(existCheckin == null){
+        if (existCheckin == null) {
             map.put("type", "error");
             map.put("msg", "请选择正确的入住信息进行编辑!");
             return map;
         }
         //判断是否编辑成功
-        if(checkinService.edit(checkin) <= 0){
+        if (checkinService.edit(checkin) <= 0) {
             map.put("type", "error");
             map.put("msg", "编辑失败，请联系管理员!");
             return map;
@@ -335,20 +335,20 @@ public class CheckinController {
         //修改后房型
         RoomType newRoomType = roomTypeService.findById(checkin.getRoomTypeId());
         //判断房型是否发生变化
-        if(oldRoomType.getId().longValue()!=newRoomType.getId().longValue()){
+        if (oldRoomType.getId().longValue() != newRoomType.getId().longValue()) {
             //说明房型发生了变化，原来的房型入住数恢复，新的房型入住数增加
             oldRoomType.setLivedNum(oldRoomType.getLivedNum() - 1);
             newRoomType.setLivedNum(newRoomType.getLivedNum() + 1);
             //房间的可用数量发生变化
-                oldRoomType.setAvilableNum(oldRoomType.getAvilableNum() + 1);
-                newRoomType.setAvilableNum(newRoomType.getAvilableNum() - 1);
+            oldRoomType.setAvilableNum(oldRoomType.getAvilableNum() + 1);
+            newRoomType.setAvilableNum(newRoomType.getAvilableNum() - 1);
 
         }
         //更新发生相应变化的房型
         roomTypeService.updateNum(oldRoomType);
         roomTypeService.updateNum(newRoomType);
         //判断房间是否发生变化
-        if(checkin.getRoomId().longValue()!=existCheckin.getRoomId().longValue()){
+        if (checkin.getRoomId().longValue() != existCheckin.getRoomId().longValue()) {
             //表示房间发生了变化
             //修改前的房间
             Room oldRoom = roomService.findById(existCheckin.getRoomId());
@@ -368,13 +368,13 @@ public class CheckinController {
     /**
      * 根据房间类型获取房间
      */
-    @RequestMapping(value="/load_room_list",method=RequestMethod.POST)
+    @RequestMapping(value = "/load_room_list", method = RequestMethod.POST)
     @ResponseBody
-    public List<Map<String,Object>>load_room_list(Long roomTypeId) throws Exception {
+    public List<Map<String, Object>> load_room_list(Long roomTypeId) throws Exception {
         //创建返回数据集合
-        List<Map<String,Object>>mapList=new ArrayList<Map<String,Object>>();
+        List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
         //创建查询条件集合
-        Map<String,Object> queryMap=new HashMap<String,Object>();
+        Map<String, Object> queryMap = new HashMap<String, Object>();
         //将查询条件添加到集合当中
         queryMap.put("roomTypeId", roomTypeId);
         queryMap.put("status", 0);
@@ -390,5 +390,19 @@ public class CheckinController {
             mapList.add(option);
         }
         return mapList;
+    }
+
+    /**
+     * 根据房间类型获取房间
+     */
+    @RequestMapping(value = "/load_price", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> load_price(Long roomTypeId) throws Exception {
+        //创建返回数据存储集合
+        Map<String, String> map = new HashMap<String, String>();
+        RoomType roomType = roomTypeService.findById(roomTypeId);
+        map.put("type","success");
+        map.put("msg",""+roomType.getPrice());
+        return map;
     }
 }

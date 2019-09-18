@@ -22,7 +22,7 @@
 
 <header>
     <div>
-        <a href=""><img src="../resources/home/images/logo-1.jpg" alt=""> </a> <span>注册</span>
+        <a href=""><img src="../resources/home/images/jiudian.jpg" alt=""> </a> <span>注册</span>
     </div>
 
 </header>

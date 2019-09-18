@@ -70,6 +70,7 @@
 			 <mvc:mapping path="/home/**"/>
 			 <mvc:exclude-mapping path="/home/login"/>
 			 <mvc:exclude-mapping path="/home/reg"/>
+			 <mvc:exclude-mapping path="/home/index"/>
 			 <mvc:exclude-mapping path="/home/get_cpacha"/>
 			 <mvc:exclude-mapping path="/resources/**"/>
 			 <bean class="cn.itcast.interceptor.home.LoginInterceptor"></bean>

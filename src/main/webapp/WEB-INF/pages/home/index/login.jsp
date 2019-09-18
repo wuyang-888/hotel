@@ -15,13 +15,13 @@
 
 <header>
     <div>
-        <a href="index.html"><img src="../resources/home/images/logo-1.jpg" alt=""></a> <span>会员登录</span>
+        <a href="index.html"><img src="../resources/home/images/jiudian.jpg" alt=""></a> <span>会员登录</span>
     </div>
 
 </header>
 <section>
     <div class="left">
-        <img src="../resources/home/images\index.jpg" alt="">
+        <img src="../resources/home/images\index1.jpg" alt="">
     </div>
     <div class="login">
 

@@ -66,7 +66,7 @@
             <tr>
                 <td align="right">房间:</td>
                 <td>
-	                <select id="add-roomId" name="roomId" class="easyui-combobox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择客户'">
+	                <select id="add-roomId" name="roomId" class="easyui-combobox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择房间'">
 		            	<c:forEach items="${roomList}" var="room">
 		            	<option value="${room.id }">${room.sn }</option>
 		            	</c:forEach>
@@ -194,9 +194,7 @@
 
 <!-- End of easyui-dialog -->
 <script type="text/javascript">
-	
-	
-	
+
 	/**
 	*  添加记录
 	*/
@@ -423,6 +421,18 @@
 		onSelect:function(data){
 			$("#add-roomId").combobox('clear');
 			$("#add-roomId").combobox('reload','load_room_list?roomTypeId='+data.value);
+            $.ajax({
+                url:'load_price?roomTypeId='+data.value,
+                dataType:'json',
+                type:'post',
+//                data:{checkId:item.id},
+                success:function(data1){
+
+                    $("#add-checkinPrice").val(data1.msg);
+
+                }
+            });
+
 		}
 	});
 	
@@ -430,6 +440,16 @@
 		onSelect:function(data){
 			$("#edit-roomId").combobox('clear');
 			$("#edit-roomId").combobox('reload','load_room_list?roomTypeId='+data.value);
+            $.ajax({
+                url:'load_price?roomTypeId='+data.value,
+                dataType:'json',
+                type:'post',
+//                data:{checkId:item.id},
+                success:function(data1){
+                    $("#edit-checkinPrice").val(data1.msg);
+
+                }
+            });
 		}
 	});
 	
