@@ -77,7 +77,7 @@ public class RoomController {
         int total = roomService.getTotal(queryMap);
         //将查询到的信息保存到返回集合
         map.put("rows",rooms);
-        map.put("tatal",total);
+        map.put("total",total);
         return map;
     }
 

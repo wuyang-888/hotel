@@ -3,6 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.itcast.dao.AccountDao">
+    <!-- 客户插入操作 -->
+    <insert id="add" parameterType="account">
+        insert into account(name,password,realName,idCard,mobile,address,status) values(#{name},#{password},#{realName},#{idCard},#{mobile},#{address},#{status})
+    </insert>
+    <!-- 客户编辑操作 -->
+    <update id="edit" parameterType="account">
+        update account set name = #{name},password = #{password},realName = #{realName},idCard = #{idCard},mobile = #{mobile},address = #{address},status = #{status} where id = #{id}
+    </update>
     <!--模糊查询客户循序-->
     <select parameterType="Map" id="findList" resultType="account">
         select * from account where 1 = 1

@@ -3,6 +3,7 @@ package cn.itcast.controller.admin;
 import cn.itcast.pojo.Account;
 import cn.itcast.pojo.admin.Page;
 import cn.itcast.service.AccountService;
+import cn.itcast.service.admin.LogService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class AccountController {
     /*******************************************************************/
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private LogService logService;
     /*******************************************************************/
 
     /**
@@ -63,6 +66,7 @@ public class AccountController {
         Integer total = accountService.getTotal(queryMap);
         map.put("rows",accountList);
         map.put("total",total);
+
         return map;
 
     }

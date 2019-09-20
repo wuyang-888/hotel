@@ -56,7 +56,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/list",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getList(Page page,
+	public Map<String, Object> list(Page page,
 									   @RequestParam(name="username",required=false,defaultValue="") String username,
 									   @RequestParam(name="roleId",required=false) Long roleId,
 									   @RequestParam(name="sex",required=false) Integer sex
@@ -197,7 +197,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/upload_photo",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> uploadPhoto(MultipartFile photo,HttpServletRequest request){
+	public Map<String, String> uploadPhoto(MultipartFile photo, HttpServletRequest request){
 		Map<String, String> ret = new HashMap<String, String>();
 		if(photo == null){
 			ret.put("type", "error");

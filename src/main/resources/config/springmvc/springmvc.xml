@@ -31,6 +31,8 @@
 	<mvc:default-servlet-handler/>
 	<!-- 设置静态资源不过滤 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
 	<!-- 配置视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

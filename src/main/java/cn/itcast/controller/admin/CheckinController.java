@@ -170,12 +170,12 @@ public class CheckinController {
         //入住成功后修改房型信息
         if (roomType != null) {
             roomType.setLivedNum(roomType.getLivedNum() + 1);//入住数加1
-            roomType.setBookNum(roomType.getRoomNum() - 1);
-            roomTypeService.updateNum(roomType);
             //修改预定数
             if (checkin.getBookOrderId() != null) {
                 roomType.setBookNum(roomType.getBookNum() - 1);
             }
+            roomTypeService.updateNum(roomType);
+
             //如果可用的房间数为0，则设置该房型状态已满
             if (roomType.getAvilableNum() == 0) {
                 roomType.setStatus(0);
@@ -393,7 +393,7 @@ public class CheckinController {
     }
 
     /**
-     * 根据房间类型获取房间
+     * 根据房间类型获取房间价格
      */
     @RequestMapping(value = "/load_price", method = RequestMethod.POST)
     @ResponseBody
