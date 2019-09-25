@@ -401,6 +401,7 @@ public class CheckinController {
         //创建返回数据存储集合
         Map<String, String> map = new HashMap<String, String>();
         RoomType roomType = roomTypeService.findById(roomTypeId);
+
         map.put("type","success");
         map.put("msg",""+roomType.getPrice());
         return map;

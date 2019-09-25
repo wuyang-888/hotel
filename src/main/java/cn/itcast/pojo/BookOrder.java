@@ -21,6 +21,7 @@ public class BookOrder implements Serializable {
     private String leaveDate;//离店日期
     private Date createTime;//预定日期
     private String remark;
+    private Float totalPrice; //总价
 
     public Long getId() {
         return id;
@@ -110,4 +111,11 @@ public class BookOrder implements Serializable {
         this.remark = remark;
     }
 
+    public Float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

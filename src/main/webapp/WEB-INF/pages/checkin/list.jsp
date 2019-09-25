@@ -427,8 +427,9 @@
                 type:'post',
 //                data:{checkId:item.id},
                 success:function(data1){
-
-                    $("#add-checkinPrice").val(data1.msg);
+                    <%--<c:if test="${}">--%>
+                    <%--$("#add-checkinPrice").val(data1.msg);--%>
+                    <%--</c:if>--%>
 
                 }
             });
@@ -533,6 +534,7 @@
                 	$("#add-status").combobox('setValue',selectedOrder.status);
                 	$("#add-roomTypeId").combobox('setValue',selectedOrder.roomTypeId);
                 	$("#add-remark").val(selectedOrder.remark);
+                    $("#add-checkinPrice").val(selectedOrder.totalPrice);
                 	
                 	$("#edit-name").val(selectedOrder.name);
                 	$("#edit-arriveDate").datebox('setValue',selectedOrder.arriveDate);

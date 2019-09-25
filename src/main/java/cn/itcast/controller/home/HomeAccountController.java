@@ -6,6 +6,7 @@ import cn.itcast.pojo.RoomType;
 import cn.itcast.service.AccountService;
 import cn.itcast.service.BookOrderService;
 import cn.itcast.service.RoomTypeService;
+import cn.itcast.util.DateUtils;
 import cn.itcast.util.Md5Class;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 前台用户控制器
@@ -117,7 +118,47 @@ public class HomeAccountController {
 			ret.put("msg", "离店时间不能为空!");
 			return ret;
 		}
+
 		bookOrder.setCreateTime(new Date());
+
+		String arriveDate = bookOrder.getArriveDate();
+		//将输入的字符串转换为指定的时间格式
+		DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+		Date date=df.parse(arriveDate);
+		Calendar c1=new GregorianCalendar();
+		c1.setTime(date);
+		//获取天数
+		int arrayDay = c1.get(Calendar.DAY_OF_MONTH);
+		Date now=new Date();
+		Calendar c2=new GregorianCalendar();
+		c2.setTime(now);
+		int nowDay = c2.get(Calendar.DAY_OF_MONTH);
+		if(arrayDay<nowDay){
+			ret.put("type", "error");
+			ret.put("msg", "到达时间不能在今日之前");
+			return ret;
+		}
+
+		String leaveDate=bookOrder.getLeaveDate();
+		//将输入的字符串转换为指定的时间格式
+		DateFormat df2=new SimpleDateFormat("yyyy-MM-dd");
+		Date date2=df.parse(leaveDate);
+		Calendar c3=new GregorianCalendar();
+		c3.setTime(date2);
+		int  leftDay= c3.get(Calendar.DAY_OF_MONTH);
+		if(leftDay<arrayDay){
+			ret.put("type", "error");
+			ret.put("msg", "离开时间不能在到达时间之前");
+			return ret;
+		}
+
+		//价格
+		int totalDay=leftDay-arrayDay;
+		Long roomTypeId = bookOrder.getRoomTypeId();
+		RoomType roomType1 = roomTypeService.findById(roomTypeId);
+		bookOrder.setTotalPrice(roomType1.getPrice()*totalDay);
+
+
 		bookOrder.setStatus(0);
 		if(bookOrderService.add(bookOrder) <= 0){
 			ret.put("type", "error");

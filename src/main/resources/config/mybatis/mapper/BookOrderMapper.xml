@@ -5,7 +5,7 @@
 <mapper namespace="cn.itcast.dao.BookOrderDao">
 	<!-- 预定订单插入操作 -->
 	<insert id="add" parameterType="cn.itcast.pojo.BookOrder">
-		insert into book_order(id,accountId,roomTypeId,name,idCard,mobile,status,arriveDate,leaveDate,createTime,remark) values(null,#{accountId},#{roomTypeId},#{name},#{idCard},#{mobile},#{status},#{arriveDate},#{leaveDate},#{createTime},#{remark})
+		insert into book_order(id,accountId,roomTypeId,name,idCard,mobile,status,arriveDate,leaveDate,createTime,remark,totalPrice) values(null,#{accountId},#{roomTypeId},#{name},#{idCard},#{mobile},#{status},#{arriveDate},#{leaveDate},#{createTime},#{remark},#{totalPrice})
 	</insert>
 	<!-- 预定订单编辑操作 -->
 	<update id="edit" parameterType="cn.itcast.pojo.BookOrder">

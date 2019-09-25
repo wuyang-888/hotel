@@ -94,6 +94,25 @@ public class RoomTypeController {
         roomType.setAvilableNum(roomType.getRoomNum());//默认房间数等于可用房间数
         roomType.setBookNum(0);//设置预定数0
         roomType.setLivedNum(0);//设置已入住数0
+
+        //判断该房间类型是否添加成功
+        if (roomType.getRoomNum()<1) {
+            map.put("type", "error");
+            map.put("msg", "房间数目不正确");
+            return map;
+        }
+        if (roomType.getBedNum()<1) {
+            map.put("type", "error");
+            map.put("msg", "床位数目不正确");
+            return map;
+        }
+
+        if (roomType.getLiveNum()<1) {
+            map.put("type", "error");
+            map.put("msg", "可住e数目不正确");
+            return map;
+        }
+
         //判断该房间类型是否添加成功
         if (roomTypeService.add(roomType) <= 0) {
             map.put("type", "error");

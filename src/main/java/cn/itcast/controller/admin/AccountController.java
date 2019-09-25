@@ -4,6 +4,7 @@ import cn.itcast.pojo.Account;
 import cn.itcast.pojo.admin.Page;
 import cn.itcast.service.AccountService;
 import cn.itcast.service.admin.LogService;
+import cn.itcast.util.Md5Class;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -104,6 +105,9 @@ public class AccountController {
             map.put("msg", "该用户名已存在!");
             return map;
         }
+
+        //密码加密
+        account.setPassword(Md5Class.stringToMd5(account.getPassword()));
 
         //判断是否添加成功
         if (accountService.add(account)<=0) {

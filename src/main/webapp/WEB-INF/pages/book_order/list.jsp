@@ -414,6 +414,7 @@
 			{ field:'mobile',title:'手机号',width:100,sortable:true},
 			{ field:'arriveDate',title:'入住日期',width:100,sortable:true},
 			{ field:'leaveDate',title:'离店日期',width:100,sortable:true},
+            { field:'totalPrice',title:'总金额',width:100,sortable:true},
 			{ field:'status',title:'状态',width:100,formatter:function(value,row,index){
 				switch(value){
 					case 0:{
